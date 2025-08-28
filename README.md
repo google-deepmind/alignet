@@ -60,7 +60,7 @@ To increase the reproducibility of our research, we split AligNet into a
 training and a validation set. The train split `alignet_train.npz` contains 10M
 triplets and the validation split `alignet_valid.npz` contains 10k triplets.
 The files are stored in
-[Numpy’s compressed array format](ttps://numpy.org/doc/stable/reference/generated/numpy.lib.format.html).
+[Numpy’s compressed array format](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html).
 Each file contains three arrays of *n* entries each, where `n=10M` for training
 and `n=10k` for validation. Row *i* describes the *i*th triplet. Note that
 within each triplet we sorted the images such that the last image is always the
@@ -130,6 +130,11 @@ NOTE: Note the use of `tfds.data_source` rather than `tfds.load`. This is needed
  because otherwise TFDS defaults to generating the dataset in TFRecords format
  which doesn't support random access, and does not work with AligNet finetuning.
 
+## Levels dataset
+As part of the AligNet project we also collected an evaluation dataset of human
+ similarity judgments spanning multiple levels of semantic abstraction.
+It can be found here: https://gin.g-node.org/fborn/Dataset_Levels
+
 ## Run AligNet finetuning on SigLIP
 
 * Navigate to the parent directory of the `alignet` repository.
@@ -148,20 +153,26 @@ NOTE: Note the use of `tfds.data_source` rather than `tfds.load`. This is needed
 
 ## AligNet models
 
-We have exported AligNet post-trained versions several models, which are
-available at https://console.cloud.google.com/storage/browser/alignet
+We have exported AligNet post-trained versions of several models, which are
+available at https://console.cloud.google.com/storage/browser/alignet/models
 
 The models are released in the Tensorflow
 [SavedModel](https://www.tensorflow.org/guide/saved_model) format.
-We provide 7 different models:
+We provide 8 different models:
 
 * SigLIP-B
+* SigLIP2-B
 * DINOv1-B
 * DINOv2-B
 * CapPa-B
-* ViT-S
 * ViT-B
-* ViT-L
+* CLIP-Vit-B
+* Scratch-B
+
+For each model we provide three variants:
+ * `MODEL-base_model`: The pre-trained base model before any AligNet post-training.
+ * `MODEL-alignet`: The AligNet post-trained model.
+ * `MODEL-untransformed`: The UnAligNet post-trained model.
 
 Each model comes as a separate `.tar.gz` file that needs to be downloaded and
 extracted. Then it can then be loaded and run as follows:
@@ -184,14 +195,12 @@ The `output` is a dictionary with the following entries:
   * `'pre_logits': f32[B H]` The logits of the layer before the readout heads. The dimension `H` varies between models (768-1536)
   * `'i1k_logits' : f32[B 1000]` The logits of the ImageNet2012 readout head.
   * `'triplet_logits': f32[B 1024]` The logits of the triplet head used during the AligNet post-training.
-  * `'layer_{NUM}': f32[B 196 H]` Only included if using one of the
-  `_all_layers` variants of the models. Corresponds to the internal
-  representations (14*14 = 196 tokens) after each of the (typically 12) layers.
+  * `'layer_{NUM}': f32[B 196 H]` Corresponds to the internal representations (14*14 = 196 tokens) after each of the (typically 12) layers.
 
 ## Citation
 
-If you use the models, code, or dataset, we’d appreciate if you could cite the
-corresponding paper as follows:
+If you use the models, code, or dataset, we would appreciate if you could cite
+the corresponding paper as follows:
 
 ```
 @article{muttenthaler2024aligning,
