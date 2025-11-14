@@ -49,7 +49,7 @@ The AligNet dataset is a synthetically generated dataset of image triplets
 choices.
 
 ### AligNet triplets
-Download the data from https://console.cloud.google.com/storage/browser/alignet
+Download the data from https://storage.googleapis.com/alignet/data/release_1.1/index.html
 
 AligNet is a dataset of triplets and corresponding odd-one-out choices.
 Each triplet contains 3 image filenames (the images are sampled from ImageNet)
@@ -154,7 +154,7 @@ It can be found here: https://gin.g-node.org/fborn/Dataset_Levels
 ## AligNet models
 
 We have exported AligNet post-trained versions of several models, which are
-available at https://console.cloud.google.com/storage/browser/alignet/models
+available at https://storage.googleapis.com/alignet/models/index.html
 
 The models are released in the Tensorflow
 [SavedModel](https://www.tensorflow.org/guide/saved_model) format.
@@ -203,11 +203,13 @@ If you use the models, code, or dataset, we would appreciate if you could cite
 the corresponding paper as follows:
 
 ```
-@article{muttenthaler2024aligning,
+@article{muttenthaler2025aligning,
   title={Aligning Machine and Human Visual Representations across Abstraction Levels},
   author={Muttenthaler, Lukas and Greff, Klaus and Born, Frieda and Spitzer, Bernhard and Kornblith, Simon and Mozer, Michael C and M{\"u}ller, Klaus-Robert and Unterthiner, Thomas and Lampinen, Andrew K},
-  journal={arXiv preprint arXiv:2409.06509},
-  year={2024}
+  journal={Nature},
+  volume={623},
+  pages={349--355},
+  year={2025}
 }
 ```
 
@@ -262,7 +264,7 @@ engines such as [Google Dataset Search](https://g.co/datasetsearch).
   </tr>
   <tr>
     <td>citation</td>
-    <td><code itemprop="citation">Muttenthaler L, Greff K, Born F, Spitzer B, Kornblith S, Mozer MC, M&uuml;ller KR, Unterthiner T, Lampinen AK (2024). Aligning machine and human visual representations across abstraction levels. arXiv preprint arXiv:2409.06509.</code></td>
+    <td><code itemprop="citation">Muttenthaler L, Greff K, Born F, Spitzer B, Kornblith S, Mozer MC, M&uuml;ller KR, Unterthiner T, Lampinen AK (2025). Aligning machine and human visual representations across abstraction levels. Nature, 647, 349-355</code></td>
   </tr>
 </table>
 </div>
